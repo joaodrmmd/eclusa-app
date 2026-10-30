@@ -1,5 +1,5 @@
-# from dados import funcoes de gerenciamento de tarefas
-# from skill import funcoes de geração de gerenciamento de skills
+from dados import funcoes de gerenciamento de tarefas
+from skill import funcoes de geração de gerenciamento de skills
 
 comando = input()
 
