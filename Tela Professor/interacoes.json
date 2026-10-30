@@ -1,0 +1,16 @@
+[
+	{
+		"numero": 1,
+		"tarefa": 1,
+		"aluno": "aluno@instituicao.com.br",
+		"pergunta": "por onde eu começo?",
+		"resposta": "Que tal pensar primeiro no caso mais simples?"
+	},
+	{
+		"numero": 2,
+		"tarefa": 1,
+		"aluno": "aluno@instituicao.com.br",
+		"pergunta": "me dá o código pronto",
+		"resposta": "Não posso dar o código, mas posso te ajudar a montar o raciocínio."
+	}
+]
