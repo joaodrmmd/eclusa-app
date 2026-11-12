@@ -1,0 +1,7 @@
+{
+  "proximo_numero": 3,
+  "tarefas": [
+    {"numero": 1, "titulo": "Recursão", "descricao": "Fazer a função de fatorial", "instrucoes": ["Não dá o código pronto."], "ia": "claude", "modelo": "haiku", "skill": "tarefa-1", "status": "aberta"},
+    {"numero": 2, "titulo": "Listas", "descricao": "Somar os itens de uma lista", "instrucoes": ["Só dá dica."], "ia": "codex", "modelo": "gpt-6-luna", "skill": "tarefa-2", "status": "encerrada"}
+  ]
+}

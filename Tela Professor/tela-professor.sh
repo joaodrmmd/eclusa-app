@@ -1,14 +1,14 @@
 #!/bin/bash
-# Telas do professor do ECLUSA (a funcionalidade fica no professor.py)
 
 cd "$(dirname "$0")" || exit 1
+source "../ui.sh"
 
 MODELOS_CLAUDE=(haiku sonnet opus)
 MODELOS_CODEX=(gpt-6.1-sol gpt-6-sol gpt-6-luna)
 
 ERRO_GERAL="Não consegui fazer isso agora. Tenta de novo."
 
-# Manda cada argumento como uma linha pro professor.py e guarda cada linha da resposta em SAIDA
+
 chamar() {
     mapfile -t SAIDA < <(printf '%s\n' "$@" | python3 professor.py)
 }
@@ -20,7 +20,7 @@ cabecalho() {
     tput sgr0
 }
 
-# Mostra a pergunta e guarda o que foi digitado em RESPOSTA
+
 perguntar() {
     printf '%s' "$1"
     IFS= read -r RESPOSTA || exit
@@ -30,7 +30,7 @@ pausar() {
     perguntar "(aperta Enter pra voltar)"
 }
 
-# Repete a pergunta até a pessoa digitar só número. Guarda em NUMERO.
+
 ler_numero() {
     while true; do
         perguntar "$1"
@@ -42,7 +42,7 @@ ler_numero() {
     done
 }
 
-# Repete o "Escolha:" até a pessoa escolher uma opção entre $1 e $2. Guarda em OPCAO.
+
 escolher() {
     while true; do
         perguntar "Escolha: "
@@ -67,7 +67,7 @@ nao_achei() {
     pausar
 }
 
-# Lê as instruções linha por linha até a pessoa digitar FIM. Guarda em INSTRUCOES.
+
 ler_instrucoes() {
     echo
     echo "Instruções pra IA (escreve quantas linhas quiser;"
@@ -80,7 +80,58 @@ ler_instrucoes() {
     done
 }
 
-# Guarda a escolha em IA e MODELO
+
+ler_questoes() {
+    echo
+    echo "Questões (uma linha por vez; alternativas em linhas separadas;"
+    echo "digita FIM numa linha sozinha pra terminar):"
+    QUESTOES=()
+    while true; do
+        perguntar "> "
+        [[ $RESPOSTA == FIM ]] && return
+        QUESTOES+=("$RESPOSTA")
+    done
+}
+
+
+escolher_tipo() {
+    echo
+    echo "Tipo de atividade?"
+    echo " 1. Questões escritas (abertas ou com alternativas)"
+    echo " 2. PDF com as questões (abre com o display)"
+    escolher 1 2
+    if (( OPCAO == 1 )); then
+        TIPO=texto
+    else
+        TIPO=pdf
+    fi
+}
+
+
+ler_pdf() {
+    while true; do
+        perguntar "Caminho do PDF (ex.: ~/provas/lista1.pdf): "
+        CAMINHO_PDF=${RESPOSTA/#\~/$HOME}
+        if [[ -f $CAMINHO_PDF ]]; then
+            return
+        fi
+        echo "Não achei esse arquivo. Confere o caminho."
+    done
+}
+
+
+ler_material() {
+    escolher_tipo
+    if [[ $TIPO == pdf ]]; then
+        ler_pdf
+        QUESTOES=()
+    else
+        CAMINHO_PDF=""
+        ler_questoes
+    fi
+}
+
+
 escolher_ia_e_modelo() {
     local i
     echo
@@ -105,8 +156,7 @@ escolher_ia_e_modelo() {
     MODELO=${MODELOS[OPCAO - 1]}
 }
 
-# Escreve $2 completando com espaços até ter $1 letras
-# (o printf do bash conta letra com acento como 2, por isso não dá pra usar %-10s)
+
 coluna() {
     local texto=$2
     while (( ${#texto} < $1 )); do
@@ -124,7 +174,7 @@ linha_da_tabela() {
     printf '%s\n' "$5"
 }
 
-# Tabela com todas as tarefas (o listar devolve 5 linhas por tarefa)
+
 mostrar_tabela() {
     local i largura_titulo=6 largura_modelo=6
     chamar listar
@@ -148,8 +198,13 @@ adicionar_tarefa() {
     descricao=$RESPOSTA
     ler_instrucoes
     escolher_ia_e_modelo
+    ler_material
 
-    chamar adicionar "$titulo" "$descricao" "${INSTRUCOES[@]}" FIM "$IA" "$MODELO"
+    if [[ $TIPO == pdf ]]; then
+        chamar adicionar "$titulo" "$descricao" "${INSTRUCOES[@]}" FIM "$IA" "$MODELO" "$TIPO" "$CAMINHO_PDF"
+    else
+        chamar adicionar "$titulo" "$descricao" "${INSTRUCOES[@]}" FIM "$IA" "$MODELO" "$TIPO" "${QUESTOES[@]}" FIM
+    fi
     echo
     if [[ ${SAIDA[0]} =~ ^[0-9]+$ ]]; then
         echo "Prontinho! Tarefa ${SAIDA[0]} criada e skill instalada."
@@ -190,7 +245,7 @@ ver_resultados() {
     echo "$perguntas de $alunos"
     echo
 
-    # Cada interação ocupa 3 linhas (aluno, pergunta, resposta). Agrupa por aluno.
+    
     vistos=()
     for (( i = 2; i < ${#SAIDA[@]}; i += 3 )); do
         aluno=${SAIDA[i]}
@@ -237,7 +292,21 @@ editar_tarefa() {
         escolher_ia_e_modelo
     fi
 
-    chamar editar "$NUMERO" "$titulo" "$descricao" "${INSTRUCOES[@]}" FIM "$IA" "$MODELO"
+    TROCAR_MATERIAL=nao
+    if sim_ou_nao "Quer trocar as questões ou o PDF? (s/n): "; then
+        TROCAR_MATERIAL=sim
+        ler_material
+    fi
+
+    if [[ $TROCAR_MATERIAL == sim ]]; then
+        if [[ $TIPO == pdf ]]; then
+            chamar editar "$NUMERO" "$titulo" "$descricao" "${INSTRUCOES[@]}" FIM "$IA" "$MODELO" sim "$TIPO" "$CAMINHO_PDF"
+        else
+            chamar editar "$NUMERO" "$titulo" "$descricao" "${INSTRUCOES[@]}" FIM "$IA" "$MODELO" sim "$TIPO" "${QUESTOES[@]}" FIM
+        fi
+    else
+        chamar editar "$NUMERO" "$titulo" "$descricao" "${INSTRUCOES[@]}" FIM "$IA" "$MODELO" nao
+    fi
     echo
     if [[ ${SAIDA[0]} == ok ]]; then
         echo "Tarefa $NUMERO atualizada e skill refeita."
@@ -300,17 +369,28 @@ gerenciar_tarefas() {
     done
 }
 
+
+menu_principal() {
+    clear
+    ui_caixa 50 "ECLUSA · MENU DO PROFESSOR" \
+        "" \
+        "  1. Adicionar tarefa" \
+        "  2. Ver resultados" \
+        "  3. Gerenciar tarefas" \
+        "" \
+        "  0. Voltar ao login"
+    tput cup "$UI_FIM" "$UI_ESQUERDA"
+    echo
+}
+
+
 while true; do
-    cabecalho "MENU DO PROFESSOR"
-    echo "1. Adicionar tarefa"
-    echo "2. Ver resultados"
-    echo "3. Gerenciar tarefas"
-    echo "0. Sair"
+    menu_principal
     escolher 0 3
     case $OPCAO in
         1) adicionar_tarefa ;;
         2) ver_resultados ;;
         3) gerenciar_tarefas ;;
-        0) clear; exit ;;
+        0) clear; exit 0 ;;
     esac
 done

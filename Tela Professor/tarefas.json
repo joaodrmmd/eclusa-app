@@ -1,0 +1,58 @@
+{
+  "proximo_numero": 5,
+  "tarefas": [
+    {
+      "numero": 1,
+      "titulo": "Lista 1 - Recursão (PDF)",
+      "descricao": "Questões da lista 1 em PDF",
+      "instrucoes": [
+        "Não dá o código pronto."
+      ],
+      "ia": "claude",
+      "modelo": "haiku",
+      "skill": "tarefa-1",
+      "status": "encerrada",
+      "tipo": "pdf",
+      "questoes": [],
+      "pdf": "atividades/tarefa-1.pdf"
+    },
+    {
+      "numero": 3,
+      "titulo": "Recursão - pergunta aberta",
+      "descricao": "Explique com suas palavras",
+      "instrucoes": [
+        "Não dá a resposta pronta."
+      ],
+      "ia": "claude",
+      "modelo": "haiku",
+      "skill": "tarefa-3",
+      "status": "aberta",
+      "tipo": "texto",
+      "questoes": [
+        "Explique com suas palavras o que é um caso base em uma função recursiva."
+      ],
+      "pdf": ""
+    },
+    {
+      "numero": 4,
+      "titulo": "teste 5",
+      "descricao": "teste do teste",
+      "instrucoes": [
+        "alkgjlkhsakljghsjkgh"
+      ],
+      "ia": "claude",
+      "modelo": "haiku",
+      "skill": "tarefa-4",
+      "status": "aberta",
+      "tipo": "texto",
+      "questoes": [
+        "etste teste ",
+        "teste ",
+        "a) faslkjfalkj",
+        "b) flksahjfkjhaf",
+        "FIm"
+      ],
+      "pdf": ""
+    }
+  ]
+}

@@ -1,11 +1,14 @@
 #!/bin/bash
-# Tela de login do ECLUSA (só a tela, sem backend)
+# Tela de login do ECLUSA
+# Confere o e-mail e a senha no login.py e abre a tela certa (professor ou aluno)
 
-LARGURA=49           # largura da logo e da caixa
-ALTURA=16            # logo (6) + espaço (1) + caixa (7) + espaço (1) + dica (1)
-TAMANHO_CAMPO=35     # quantos caracteres cabem em cada campo dentro da caixa
+cd "$(dirname "$0")" || exit 1
 
-# Calcula onde a tela começa pra ficar no meio do terminal
+LARGURA=49           
+ALTURA=16            
+TAMANHO_CAMPO=35     
+
+
 posicionar() {
     TOPO=$(( ($(tput lines) - ALTURA) / 2 ))
     ESQUERDA=$(( ($(tput cols) - LARGURA) / 2 ))
@@ -17,7 +20,7 @@ posicionar() {
     FIM=$(( TOPO + ALTURA ))
 }
 
-# Escreve um texto na linha $1, deslocado $2 colunas a partir da esquerda da tela
+
 escrever() {
     tput cup "$1" $(( ESQUERDA + $2 ))
     printf '%s' "$3"
@@ -56,8 +59,7 @@ desenhar_caixa() {
     tput sgr0
 }
 
-# Lê um campo na posição $1,$2. Se $3 for "senha", mostra * no lugar das letras.
-# O que foi digitado fica em CAMPO.
+
 ler_campo() {
     local c
     CAMPO=""
@@ -91,15 +93,45 @@ sair() {
 
 trap sair INT
 
-clear
-posicionar
-desenhar_logo
-desenhar_caixa
 
-ler_campo "$LINHA_EMAIL" "$COLUNA_CAMPO"
-email=$CAMPO
+fazer_login() {
+    clear
+    posicionar
+    desenhar_logo
+    desenhar_caixa
 
-ler_campo "$LINHA_SENHA" "$COLUNA_CAMPO" senha
-senha=$CAMPO
+    while true; do
+        ler_campo "$LINHA_EMAIL" "$COLUNA_CAMPO"
+        email=$CAMPO
 
-sair
+        ler_campo "$LINHA_SENHA" "$COLUNA_CAMPO" senha
+        senha=$CAMPO
+
+        resposta=$(printf '%s\n%s\n' "$email" "$senha" | python3 login.py)
+        if [[ -n $resposta && $resposta != erro ]]; then
+            IFS=';' read -r tipo nome <<< "$resposta"
+            return
+        fi
+
+        
+        clear
+        posicionar
+        desenhar_logo
+        desenhar_caixa
+        escrever "$FIM" 0 "E-mail ou senha errados. Tenta de novo."
+    done
+}
+
+
+while true; do
+    fazer_login
+    clear
+    echo "Oi, $nome!"
+    sleep 1
+
+    if [[ $tipo == professor ]]; then
+        bash "../Tela Professor/tela-professor.sh"
+    else
+        bash "../Tela Aluno/tela-aluno.sh" "$email"
+    fi
+done

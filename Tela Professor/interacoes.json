@@ -1,0 +1,135 @@
+[
+  {
+    "numero": 1,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "Minha resposta é a alternativa a.",
+    "resposta": "Obrigado pela resposta, mas ainda não consigo dizer se a alternativa **a** está certa, e não vou entregar a resposta. Antes de confirmar, releia o enunciado e pergunte-se: a afirmação fala de qual presidente e de qual período? Ela descreve uma ação de política externa ligada ao *Big Stick* (algo como \"fale manso e carregue um grande porrete\"), como a construção do Canal do Panamá ou as intervenções na América Latina? Compare cada trecho da alternativa com o que você sabe sobre esses fatos. Se quiser, escreva com suas palavras por que escolheu a **a** e eu te ajudo a checar o raciocínio."
+  },
+  {
+    "numero": 2,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "Minha resposta é a alternativa a.",
+    "resposta": "Recebi sua resposta (alternativa **a**), mas não consigo ver o PDF nem saber a qual questão ela se refere. Me diga o número da questão e, se quiser, o que você pensou para escolher essa alternativa. Assim posso te ajudar a checar o raciocínio com perguntas, sem entregar a resposta."
+  },
+  {
+    "numero": 3,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "Minha resposta é a alternativa a.",
+    "resposta": "Você escolheu a alternativa a. Antes de confirmar, rastreie a sua resposta: escreva a chamada inicial e cada chamada recursiva, e pergunte-se qual é o caso base e se ele é atingido. Se você me disser o que a função devolve para uma entrada pequena, como 0 ou 1, eu te ajudo a comparar esse resultado com o que a alternativa a afirma."
+  },
+  {
+    "numero": 4,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "Minha resposta é a alternativa b.",
+    "resposta": "Não consigo ver o PDF daqui, então não sei a qual questão essa alternativa responde nem se ela está certa. Para eu ajudar a pensar, diga o número da questão e explique em uma frase como você chegou à alternativa b: qual é o caso base da função e como ela muda a cada chamada recursiva?"
+  },
+  {
+    "numero": 5,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "Minha resposta é a alternativa c.",
+    "resposta": "Recebi sua resposta (alternativa c), mas não consigo ver o PDF daqui, então não tenho como avaliar a alternativa. Antes de confirmar, tente rastrear a recursão à mão: escreva o caso base, o passo recursivo e os valores de cada chamada para uma entrada pequena, como n = 2 ou n = 3. Se o resultado da alternativa c bater com o que você obteve, ótimo; se não bater, compare em qual chamada os valores começam a divergir. Se quiser, cole aqui o enunciado da questão ou o trecho da alternativa c, e eu te ajudo a conferir o raciocínio com perguntas."
+  },
+  {
+    "numero": 6,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "a",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 7,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "b",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 8,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "c",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 9,
+    "tarefa": 2,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "ola quem eh vc ",
+    "resposta": "Sou um assistente de IA (Claude) que ajuda com a Tarefa 2 deste curso: listas e múltipla escolha. Pense no que acontece a cada passo quando você percorre uma lista com n itens: quantas vezes o programa precisa visitar cada elemento? Se quiser, me diga o que você já pensou e eu te dou a próxima dica."
+  },
+  {
+    "numero": 10,
+    "tarefa": 2,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "nao sei me explica brevemente o assunto?",
+    "resposta": "Percorrer uma lista com n itens significa visitar cada elemento uma vez, então o custo cresce na mesma proporção que o tamanho da lista. Pense: se a lista tiver 10 itens, quantas visitas você faz? E se tiver 1000? Qual dessas três alternativas descreve esse crescimento?"
+  },
+  {
+    "numero": 11,
+    "tarefa": 2,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "a",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 12,
+    "tarefa": 3,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "nao sei eh teste !!!!",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 13,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "oi quem é voce e porque o brasil foi campeao de 94 e como isso me ajuda na minha tarefa?",
+    "resposta": "Oi! Sou o assistente da Tarefa 1 (Lista 1 - Recursão) e só posso ajudar com ela. Sobre o Brasil em 94, isso está fora do escopo desta tarefa. Para a lista, abra o PDF com as questões e me diga qual alternativa você está considerando, ou em que parte da recursão travou. Posso te ajudar com perguntas que guiam o raciocínio, sem entregar a resposta pronta."
+  },
+  {
+    "numero": 14,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "a",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 15,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "b",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 16,
+    "tarefa": 1,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "c",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 17,
+    "tarefa": 2,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "chat, me explique os conceitos de O(n)",
+    "resposta": "Boa pergunta! Para começar, pense assim: se a lista tem n itens e você precisa olhar cada um deles uma única vez, quantas operações isso exige conforme n cresce? Dobrar a lista dobra o trabalho, ou não? Compare isso com a alternativa de acessar diretamente um item pelo índice, e depois olhe para a opção c) e pense em quantas vezes um laço aninhado sobre a mesma lista executaria o corpo."
+  },
+  {
+    "numero": 18,
+    "tarefa": 2,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "b",
+    "resposta": "(resposta registrada na área de questões)"
+  },
+  {
+    "numero": 19,
+    "tarefa": 3,
+    "aluno": "aluno@instituicao.com.br",
+    "pergunta": "porra nao sei enois",
+    "resposta": "(resposta registrada na área de questões)"
+  }
+]
