@@ -5,6 +5,8 @@ import subprocess
 def pasta_da_skill(tarefa):
     if tarefa["ia"] == "claude":
         base = os.path.expanduser("~/.claude/skills")
+    elif tarefa["ia"] == "gemini":
+        base = os.path.expanduser("~/.gemini/config/skills")
     else:
         base = os.path.expanduser("~/.codex/skills")
     return os.path.join(base, tarefa["skill"])
@@ -18,6 +20,9 @@ def montar_comando(tarefa, pergunta):
     if tarefa["ia"] == "claude":
         return ["claude", "-p", "/" + tarefa["skill"] + " " + pergunta,
                 "--model", tarefa["modelo"], "--tools", "", "--no-session-persistence"]
+    if tarefa["ia"] == "gemini":
+        return ["agy", "-p", "/" + tarefa["skill"] + " " + pergunta,
+                "--model", tarefa["modelo"], "--mode", "plan"]
     return ["codex", "exec", "--model", tarefa["modelo"], "--sandbox", "read-only",
             "--skip-git-repo-check", "--ephemeral", "--color", "never",
             "--disable", "shell_tool", "--disable", "unified_exec",
@@ -40,6 +45,6 @@ def perguntar_ia(tarefa, pergunta):
     if resultado.returncode != 0:
         return None
     texto = resultado.stdout.strip()
-    if texto == "":
+    if texto == "" or texto.startswith("jetski:"):
         return None
     return texto

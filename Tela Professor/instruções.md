@@ -69,9 +69,9 @@ E espera receber de volta só isto (se for a primeira tarefa):
 **Detalhes:**
 
 - O número sempre chega só com dígitos (a própria tela já reclama se a pessoa digitar letra). Pode usar `int(input())` sem medo.
-- A IA chega em minúsculo: `claude` ou `codex`. O modelo chega do jeito que está na lista da tela (`haiku`, `sonnet`, `opus`...).
+- A IA chega em minúsculo: `claude`, `codex` ou `gemini`. O modelo chega do jeito que está na lista da tela (`haiku`, `sonnet`, `opus`...).
 - No `editar`, a tela manda **tudo de novo**. Se o professor apertou Enter pra manter o título, ela manda o título antigo. A única exceção são as instruções: se vier `FIM` logo de cara, sem nenhuma linha antes, é porque o professor não quis reescrever, e as instruções antigas continuam.
-- As listas de modelos ficam no começo do `tela-professor.sh`. As do Claude são as do MVP. As do Codex eu peguei da lista do Codex instalado no computador: troquem se quiserem outras.
+- As listas de modelos ficam no começo do `tela-professor.sh`. As do Claude são as do MVP. As do Codex eu peguei da lista do Codex instalado no computador: troquem se quiserem outras. As do Gemini (Antigravity CLI) vêm do `agy models`.
 
 ### 2. O formato do tarefas.json
 
@@ -170,7 +170,7 @@ Essa parte deve terminar primeiro, então a Pessoa 1 também fica responsável p
 **Arquivos:** `molde-skill.md` e `skill.py`
 **O que vai aprender:** caminhos de arquivo com `os`, criar e apagar pasta, escrever arquivo, `.replace()` e `"\n".join()`
 
-**O que é a skill:** um arquivo chamado `SKILL.md`, dentro de uma pasta com o nome da skill. O Claude Code procura skills em `~/.claude/skills/` e o Codex em `~/.codex/skills/`. Então a skill da tarefa 3 de Claude fica em `~/.claude/skills/tarefa-3/SKILL.md`.
+**O que é a skill:** um arquivo chamado `SKILL.md`, dentro de uma pasta com o nome da skill. O Claude Code procura skills em `~/.claude/skills/` o Codex em `~/.codex/skills/` e o Gemini (`agy`) em `~/.gemini/config/skills/`. Então a skill da tarefa 3 de Claude fica em `~/.claude/skills/tarefa-3/SKILL.md`.
 
 1. Escrever o `molde-skill.md`. É o texto que vale pra toda tarefa, com marcadores entre chaves no lugar das informações de cada uma:
 

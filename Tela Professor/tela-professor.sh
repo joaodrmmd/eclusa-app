@@ -5,6 +5,7 @@ source "../ui.sh"
 
 MODELOS_CLAUDE=(haiku sonnet opus)
 MODELOS_CODEX=(gpt-6.1-sol gpt-6-sol gpt-6-luna)
+MODELOS_GEMINI=(gemini-3.8-flash-high gemini-3.8-flash-medium gemini-3.8-flash-low)
 
 ERRO_GERAL="Não consegui fazer isso agora. Tenta de novo."
 
@@ -138,13 +139,17 @@ escolher_ia_e_modelo() {
     echo "Qual IA?"
     echo " 1. Claude"
     echo " 2. Codex"
-    escolher 1 2
+    echo " 3. Gemini"
+    escolher 1 3
     if (( OPCAO == 1 )); then
         IA=claude
         MODELOS=("${MODELOS_CLAUDE[@]}")
-    else
+    elif (( OPCAO == 2 )); then
         IA=codex
         MODELOS=("${MODELOS_CODEX[@]}")
+    else
+        IA=gemini
+        MODELOS=("${MODELOS_GEMINI[@]}")
     fi
 
     echo

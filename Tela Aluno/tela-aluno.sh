@@ -346,7 +346,11 @@ conversar() {
     MODELO=${SAIDA[3]}
     TIPO=${SAIDA[4]}
     MATERIAL=("${SAIDA[@]:5}")          # o que vem depois do tipo: PDF ou questões
-    [[ ${SAIDA[2]} == claude ]] && NOME_IA=Claude || NOME_IA=Codex
+    case ${SAIDA[2]} in
+        claude) NOME_IA=Claude ;;
+        gemini) NOME_IA=Gemini ;;
+        *) NOME_IA=Codex ;;
+    esac
 
     CHAT_QUEM=()
     CHAT_TXT=()

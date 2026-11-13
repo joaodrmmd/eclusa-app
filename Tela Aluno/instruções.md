@@ -9,7 +9,7 @@ A tela (`tela-aluno.sh`) fica fora da divisão, igual à do professor: ela mostr
 ```
 tela-aluno.sh (bash)                           aluno.py (python)
   mostra os menus e o chat    ─── manda ───▶     usa o dados.py  (lê as tarefas, salva as interações)
-  mostra a resposta da IA     ◀── responde ──    usa o ia.py     (chama o Claude ou o Codex)
+  mostra a resposta da IA     ◀── responde ──    usa o ia.py     (chama o Claude, o Codex ou o Gemini)
 ```
 
 ```
@@ -119,6 +119,14 @@ Estes são os comandos que rodamos de verdade (Claude Code 2.1.319 com `haiku`, 
 ```bash
 claude -p "/tarefa-3 por onde eu começo?" --model haiku --tools "" --no-session-persistence
 ```
+
+**Gemini (Antigravity CLI, `agy`):**
+
+```
+agy -p '/tarefa-3 por onde eu começo?' --model gemini-3.8-flash-low --mode plan
+```
+
+O `--mode plan` impede a IA de rodar comandos e ler arquivos. Se ela tentar, o `agy` imprime uma mensagem começando com `jetski:` e o `ia.py` trata como falha (`None`).
 
 **Codex:**
 

@@ -7,6 +7,8 @@ MOLDE = os.path.join(PASTA, "molde-skill.md")
 def pasta_da_skill(tarefa):
     if tarefa["ia"] == "claude":
         base = os.path.expanduser("~/.claude/skills")
+    elif tarefa["ia"] == "gemini":
+        base = os.path.expanduser("~/.gemini/config/skills")
     else:
         base = os.path.expanduser("~/.codex/skills")
     return os.path.join(base, tarefa["skill"])
